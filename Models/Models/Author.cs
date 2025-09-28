@@ -12,49 +12,54 @@ namespace LibraryModels
         string authorId;
         string authorFirstName;
         string authorLastName;
-        string authorYear;
+        int authorYear;
         int countryId;
         string authorPicture;
 
+
         public string AuthorId
         {
-            get { return authorId; }
-            set { authorId = value; }
+            get { return this.authorId; }
+            set { this.authorId = value; }
         }
-
-        [Required(ErrorMessage = "You must enter Autor Last Name")]
-        [StringLength(15, MinimumLength = 2, ErrorMessage = "Last Name cannot be longer than 15 characters and less than 2")]
-        [FirstLetterCapital(ErrorMessage = "First letter must be capital")]
+        [Required(ErrorMessage = "Author First Name cannot be empty")]
+        [StringLength(20,MinimumLength =2,ErrorMessage = " A firs name cannot be less than two characters or more than twenty characters.")]
+        [FirstLetterCapital(ErrorMessage = "The first letter of the name must be a capital letter and the rest must be lowercase.")]
         public string AuthorFirstName
         {
-            get { return authorFirstName; }
-            set { authorFirstName = value; }
-        }
-        public string AuthorLastName
-        {
-            get { return authorLastName; }
-            set { authorLastName = value; }
+            get { return this.authorFirstName; }
+            set { this.authorFirstName = value; }
         }
 
-        [Required(ErrorMessage = "You must enter Autor Year")]
-        public string AuthorYear
+        [Required(ErrorMessage = "Author Last Name cannot be empty")]
+        [StringLength(20, MinimumLength = 2, ErrorMessage = " A last name cannot be less than two characters or more than twenty characters.")]
+        [FirstLetterCapital(ErrorMessage = "The first letter of the name must be a capital letter and the rest must be lowercase.")]
+        public string AuthorLastName
         {
-            get { return authorYear; }
-            set { authorYear = value; }
+            get { return this.authorLastName; }
+            set { this.authorLastName = value; }
         }
-        [Required(ErrorMessage = "You must enter Autor Country")]
+
+        [Required(ErrorMessage = "Year cannot be empty")]
+        [RegularExpression(@"^(1[0-9]{3}|20[0-2][0-9])$", ErrorMessage = "The year must be between 1000 and the current year.")]    
+        public int AuthorYear
+        {
+            get { return this.authorYear; ; }
+            set { this.authorYear = value; }
+        }
         public int CountryId
         {
-            get { return countryId; }
-            set { countryId = value; }
+            get { return this.countryId; ; }
+            set { this.countryId = value; }
         }
-        [Required(ErrorMessage = "You must enter Autor Photo")]
+
+        [Required(ErrorMessage = "Author Picture cannot be empty")]
+        [OnlyImage(ErrorMessage = "The picture must be in image format (jpg, png, gif).")]
         public string AuthorPicture
         {
-            get { return authorPicture; }
-            set { authorPicture = value; }
+            get { return this.authorPicture; }
+            set { this.authorPicture = value; }
         }
 
     }
-    
 }

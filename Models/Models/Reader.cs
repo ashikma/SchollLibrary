@@ -56,23 +56,30 @@ namespace LibraryModels.Models
             get { return readerTelephone; }
             set { readerTelephone = value; }
         }
-        [Required(ErrorMessage = "You must enter Reader Image")]
 
+        [Required(ErrorMessage = "You must enter Reader Image")]
+        [OnlyImage(ErrorMessage = "Image must be in jpg, jpeg, png or bmp format")]]
         public string ReaderImage
         {
             get { return readerImage; }
             set { readerImage = value; }
         }
+
         public string CityId
         {
             get { return cityId; }
             set { cityId = value; }
         }
+
+        [Required(ErrorMessage = "You must enter Reader Nick Name")]
+        [StringLength(15, MinimumLength = 2, ErrorMessage = "Nick Name cannot be longer than 15 characters and less than 2")]
         public string ReaderNickName
         {
             get { return readerNickName; }
             set { readerNickName = value; }
         }
+        [Required(ErrorMessage = "You must enter Reader Password")]
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "Password cannot be longer than 20 characters and less than 6")]
         public string ReaderPassword
         {
             get { return readerPassword; }
